@@ -51,11 +51,12 @@ public class LoginController {
         login.setPassword(password);
 
         User user = UserService.validateUser(login);
+        Map<String, String> model = new HashMap<String, String>();
 
         if (user == null) {
-            return new ModelAndView("login");
+            model.put("message", "Username or password is wrong!");
+            return new ModelAndView("login", model);
         } else {
-            Map<String, String> model = new HashMap<String, String>();
             model.put("username", username);
             return new ModelAndView("welcome", model);
         }
