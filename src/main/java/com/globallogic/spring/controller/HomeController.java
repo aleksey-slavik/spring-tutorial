@@ -13,12 +13,27 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
     /**
+     * Default url of home page
+     */
+    private static final String SIMPLE_HOME_URL = "/";
+
+    /**
+     * Url of home page
+     */
+    private static final String HOME_URL = "/home";
+
+    /**
+     * Name of home page view
+     */
+    private static final String HOME_VIEW = "home";
+
+    /**
      * Redirect to home page
      *
      * @return home page
      */
-    @RequestMapping({"/", "/home"})
+    @RequestMapping({SIMPLE_HOME_URL, HOME_URL})
     public ModelAndView showHomePage() {
-        return new ModelAndView("home");
+        return new ModelAndView(HOME_VIEW);
     }
 }

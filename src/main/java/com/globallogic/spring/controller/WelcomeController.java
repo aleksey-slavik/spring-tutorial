@@ -14,12 +14,22 @@ import org.springframework.web.servlet.ModelAndView;
 public class WelcomeController {
 
     /**
+     * Url of welcome page
+     */
+    private static final String WELCOME_URL = "/welcome";
+
+    /**
+     * Name of welcome page view
+     */
+    private static final String WELCOME_VIEW = "welcome";
+
+    /**
      * Redirect to welcome page
      *
      * @return welcome page
      */
-    @RequestMapping(path = "/welcome", method = RequestMethod.GET)
+    @RequestMapping(path = WELCOME_URL, method = RequestMethod.GET)
     public ModelAndView welcome() {
-        return new ModelAndView("welcome");
+        return new ModelAndView(WELCOME_VIEW);
     }
 }

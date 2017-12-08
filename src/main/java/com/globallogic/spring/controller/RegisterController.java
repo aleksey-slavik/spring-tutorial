@@ -21,11 +21,46 @@ import java.util.Map;
 public class RegisterController {
 
     /**
+     * Url of register page
+     */
+    private static final String REGISTER_URL = "/register";
+
+    /**
+     * Url of register process page
+     */
+    private static final String REGISTER_PROCESS_URL = "/registerProcess";
+
+    /**
+     * Name of username field in register form
+     */
+    private static final String USERNAME = "username";
+
+    /**
+     * Name of password field in register form
+     */
+    private static final String PASSWORD = "password";
+
+    /**
+     * Name of email field in register form
+     */
+    private static final String EMAIL = "email";
+
+    /**
+     * Key of username value for welcome page
+     */
+    private static final String USERNAME_KEY = "username";
+
+    /**
+     * Name of welcome page view
+     */
+    private static final String WELCOME_VIEW = "welcome";
+
+    /**
      * Redirect to login page
      *
      * @return login page
      */
-    @RequestMapping(path = "/register", method = RequestMethod.GET)
+    @RequestMapping(path = REGISTER_URL, method = RequestMethod.GET)
     public ModelAndView login() {
         return new ModelAndView("register");
     }
@@ -37,11 +72,11 @@ public class RegisterController {
      * @param response http response
      * @return welcome page
      */
-    @RequestMapping(path = "/registerProcess", method = RequestMethod.POST)
+    @RequestMapping(path = REGISTER_PROCESS_URL, method = RequestMethod.POST)
     public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response) {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email");
+        String username = request.getParameter(USERNAME);
+        String password = request.getParameter(PASSWORD);
+        String email = request.getParameter(EMAIL);
 
         User user = new User();
         user.setUsername(username);
@@ -51,8 +86,8 @@ public class RegisterController {
         UserService.registerUser(user);
 
         Map<String, String> model = new HashMap<String, String>();
-        model.put("username", username);
-        return new ModelAndView("welcome", model);
+        model.put(USERNAME_KEY, username);
+        return new ModelAndView(WELCOME_VIEW, model);
 
     }
 }
