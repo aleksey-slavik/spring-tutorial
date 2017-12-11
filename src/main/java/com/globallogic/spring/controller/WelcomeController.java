@@ -1,9 +1,11 @@
 package com.globallogic.spring.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Controller for welcome page
@@ -11,12 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author oleksii.slavik
  */
 @Controller
-public class WelcomeController {
-
-    /**
-     * Url of welcome page
-     */
-    private static final String WELCOME_URL = "/welcome";
+public class WelcomeController extends AbstractController {
 
     /**
      * Name of welcome page view
@@ -28,8 +25,8 @@ public class WelcomeController {
      *
      * @return welcome page
      */
-    @RequestMapping(path = WELCOME_URL, method = RequestMethod.GET)
-    public ModelAndView welcome() {
+    @Override
+    protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         return new ModelAndView(WELCOME_VIEW);
     }
 }

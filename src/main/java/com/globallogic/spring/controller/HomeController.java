@@ -1,26 +1,17 @@
 package com.globallogic.spring.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Controller for home page
  *
  * @author oleksii.slavik
  */
-@Controller
-public class HomeController {
-
-    /**
-     * Default url of home page
-     */
-    private static final String SIMPLE_HOME_URL = "/";
-
-    /**
-     * Url of home page
-     */
-    private static final String HOME_URL = "/home";
+public class HomeController extends AbstractController {
 
     /**
      * Name of home page view
@@ -30,10 +21,12 @@ public class HomeController {
     /**
      * Redirect to home page
      *
+     * @param httpServletRequest  page request
+     * @param httpServletResponse page response
      * @return home page
      */
-    @RequestMapping({SIMPLE_HOME_URL, HOME_URL})
-    public ModelAndView showHomePage() {
+    @Override
+    protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         return new ModelAndView(HOME_VIEW);
     }
 }
